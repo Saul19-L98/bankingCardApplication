@@ -1,0 +1,42 @@
+﻿@model bankingApp.WebApp.Models.ViewModels.AccountBalanceViewModels.AccountDetailsViewModel
+@{
+    ViewData["Title"] = "Account";
+}
+<div class="text-center">
+    <h1 class="display-4">Account Balance</h1>
+    <div>
+        <h2>Account Details</h2>
+        <p><strong>Name:</strong> @Model.CardAccountDetails.Name</p>
+        <p><strong>Card Number:</strong> @Model.CardAccountDetails.CardNumber</p>
+        <p><strong>Credit Limit:</strong> @Model.CardAccountDetails.CreditLimit</p>
+        <p><strong>Current Balance:</strong> @Model.CardAccountDetails.CurrentBalance</p>
+        <p><strong>Available Balance:</strong> @Model.CardAccountDetails.AvailableBalance</p>
+        <p><strong>Bonifiable Interest:</strong> @Model.CardAccountDetails.BonifiableInterest</p>
+        <p><strong>Minimum Payment Due:</strong> @Model.CardAccountDetails.MinimumPaymentDue</p>
+        <p><strong>Total Cash Amount Payable:</strong> @Model.CardAccountDetails.TotalCashAmountPayable</p>
+        <p><strong>Total Cash Amount To Pay With Interest:</strong> @Model.CardAccountDetails.TotalCashAmountToPayWithInterest</p>
+    </div>
+    <div>
+        <h2>Total Amount of Purchases</h2>
+        <p><strong>Current Month</strong>@Model.TotalPurchasesCurrentAndPreviousMonth.TotalCurrentMonth</p>
+        <p><strong>Previous Month</strong>@Model.TotalPurchasesCurrentAndPreviousMonth.TotalPreviousMonth</p>
+    </div>
+    <div>
+        <h2>Purchases of the Month</h2>
+        @if (Model.Purchases.Count != 0)
+        {
+            foreach (var purchase in Model.Purchases)
+            {
+                <div>
+                    <p><strong>Date</strong>@purchase.Date.ToShortDateString()</p>
+                    <p><strong>Amount</strong>$@purchase.Amount</p>
+                    <p><strong>Description</strong>@purchase.Description</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Currently you have make any payment this and last month.</p>
+        }
+    </div>
+</div>

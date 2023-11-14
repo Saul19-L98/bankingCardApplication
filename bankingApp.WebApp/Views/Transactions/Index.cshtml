@@ -1,0 +1,77 @@
+﻿@model bankingApp.WebApp.Models.ViewModels.TransactionsViewModels.PaymentDTO
+
+<form id="purchaseForm">
+    <!-- Hidden field for Date -->
+    <input type="hidden" id="Date" name="Date">
+
+    <div class="form-group">
+        <label for="Amount">Amount</label>
+        <input type="number" class="form-control" id="Amount" name="Amount" required min="0.01" step="any">
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" name="Description" required maxlength="100">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#purchaseForm").submit(function (event) {
+                event.preventDefault();
+
+                // Set the current date and time
+                $("#Date").val(new Date().toISOString());
+
+                if (!validateForm()) {
+                    return; // Stop the submission if validation fails
+                }
+
+                var formData = {
+                    Date: $("#Date").val(),
+                    Amount: parseFloat($("#Amount").val()),
+                    Description: $("#Description").val()
+                };
+                console.log(formData);
+
+                $.ajax({
+                    type: "POST",
+                    url: 'https://localhost:7070/api/Transactions/purchase',
+                    contentType: "application/json",
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        console.log("Purchase added successfully");
+                        window.location.href = '/';
+                    },
+                    error: function (response) {
+                        console.log(response);
+                        console.error("Error in adding purchase");
+                        // Display error message
+                        alert("Failed to add purchase. Please try again.");
+                    }
+                });
+            });
+
+            function validateForm() {
+                var isValid = true;
+                var amount = $("#Amount").val();
+                var description = $("#Description").val();
+
+                // Validate Amount
+                if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+                    alert("A valid amount greater than zero is required.");
+                    isValid = false;
+                }
+
+                // Validate Description
+                if (!description || description.length > 100) {
+                    alert("A valid description (up to 100 characters) is required.");
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+        });
+    </script>
+}

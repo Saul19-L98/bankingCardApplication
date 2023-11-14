@@ -20,6 +20,14 @@ builder.Services.AddScoped<IAccountBalanceRepository, AccountBalanceRepository>(
 builder.Services.AddScoped<ITransactionsRepository, TransactionsRepository>();
 builder.Services.AddScoped<ITransactionsHistory, TransactionsHistory>();
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,policy => {
+                          policy.WithOrigins("https://localhost:7158","http://localhost:5024").AllowAnyHeader().AllowAnyMethod();
+                      });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +38,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
