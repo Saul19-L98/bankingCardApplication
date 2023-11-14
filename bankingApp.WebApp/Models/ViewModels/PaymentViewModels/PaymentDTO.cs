@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace bankingApp.WebApp.Models.ViewModels.TransactionsViewModels;
+namespace bankingApp.WebApp.Models.ViewModels.PaymentViewModels;
 
 public class PaymentDTO
 {

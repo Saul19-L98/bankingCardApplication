@@ -1,5 +1,4 @@
 using bankingApp.Restapi.Data;
-using bankingApp.Restapi.Models.DTO.TransactionsHistoryDTOs;
 using bankingApp.Restapi.Repository.AccountBalanceRepository;
 using bankingApp.Restapi.Repository.TransactionsHistoryRepository;
 using bankingApp.Restapi.Repository.TransactionsRepository;

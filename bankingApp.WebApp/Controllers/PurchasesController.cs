@@ -2,7 +2,7 @@
 
 namespace bankingApp.WebApp.Controllers;
 
-public class TransactionsController : Controller
+public class PurchasesController : Controller
 {
     public IActionResult Index()
     {

@@ -1,9 +1,8 @@
 ﻿using bankingApp.Restapi.Data;
 using bankingApp.Restapi.Models.DTO.TransactionsDetailsDTOs;
-using bankingApp.Restapi.Repository.TransactionsHistoryRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace bankingApp.Restapi.Models.DTO.TransactionsHistoryDTOs;
+namespace bankingApp.Restapi.Repository.TransactionsHistoryRepository;
 
 public class TransactionsHistory : ITransactionsHistory
 {

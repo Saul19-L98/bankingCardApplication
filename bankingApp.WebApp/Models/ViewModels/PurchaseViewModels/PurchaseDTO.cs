@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace bankingApp.WebApp.Models.ViewModels.c;
+namespace bankingApp.WebApp.Models.ViewModels.PurchaseViewModels;
 
 public class PurchaseDTO
 {

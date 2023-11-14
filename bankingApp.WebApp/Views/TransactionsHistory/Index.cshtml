@@ -1,0 +1,36 @@
+﻿@model List<bankingApp.WebApp.Models.DTOs.TransactionsHistoryDTOs.TransactionsHistoryDTO
+>
+<div class="bg-secondary bg-opacity-10 py-2">
+	<div class="Container">
+		<h1>Transactions of the Month</h1>
+	</div>
+</div>
+
+<div class="container py-5">
+	@if (Model != null && Model.Any())
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Amount</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.Date</td>
+						<td>@item.Amount</td>
+						<td>@item.Description</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	else
+	{
+		<p>Current there is no transaction made.</p>
+	}
+</div>

@@ -1,4 +1,5 @@
 using bankingApp.WebApp.Repositories.AccountBalanceRepository;
+using bankingApp.WebApp.Repositories.TransactionsHistoryRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,11 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IAccountBalanceRepository,AccountBalanceRepository>();
+builder.Services.AddScoped<ITransactionsHistoryRepository, TransactionsHistoryRepository>();
 
 // Register HttpClient for your repository
 builder.Services.AddHttpClient<IAccountBalanceRepository, AccountBalanceRepository>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7070/"); // Update with actual base address
+    client.BaseAddress = new Uri("https://localhost:7070/"); 
+    client.BaseAddress = new Uri("http://localhost:5272");
+});
+builder.Services.AddHttpClient<ITransactionsHistoryRepository, TransactionsHistoryRepository>(client =>
+{
+	client.BaseAddress = new Uri("https://localhost:7070/");
+	client.BaseAddress = new Uri("http://localhost:5272");
 });
 
 var app = builder.Build();
