@@ -149,13 +149,13 @@ namespace bankingApp.Restapi.Migrations
                     SELECT TOP 1
                         c.[Name],
                         c.[CardNumber],
-                        c.[CreditLimit],
-                        a.[CurrentBalance],
-                        ROUND(c.[CreditLimit] - a.[CurrentBalance], 2) AS [AvailableBalance],
-                        ROUND(a.[CurrentBalance] * a.[BonusInterest], 2) AS [BonifiableInterest],
-                        ROUND(a.[CurrentBalance] * a.[MinimumBalancePercentage], 2) AS [MinimumPaymentDue],
-                        ROUND(a.[CurrentBalance], 2) AS [TotalCashAmountPayable],
-                        ROUND(a.[CurrentBalance] + (a.[CurrentBalance] * a.[BonusInterest]), 2) AS [TotalCashAmountToPayWithInterest]
+                        CONVERT(DECIMAL(10, 2), c.[CreditLimit]) AS [CreditLimit],
+                        CONVERT(DECIMAL(10, 2), a.[CurrentBalance]) AS [CurrentBalance],
+                        CONVERT(DECIMAL(10, 2), c.[CreditLimit] - a.[CurrentBalance]) AS [AvailableBalance],
+                        CONVERT(DECIMAL(10, 2), a.[CurrentBalance] * a.[BonusInterest]) AS [BonifiableInterest],
+                        CONVERT(DECIMAL(10, 2), a.[CurrentBalance] * a.[MinimumBalancePercentage]) AS [MinimumPaymentDue],
+                        CONVERT(DECIMAL(10, 2), a.[CurrentBalance]) AS [TotalCashAmountPayable],
+                        CONVERT(DECIMAL(10, 2), a.[CurrentBalance] + (a.[CurrentBalance] * a.[BonusInterest])) AS [TotalCashAmountToPayWithInterest]
                     FROM 
                         [AccountDb].[dbo].[Card] c
                     INNER JOIN 
