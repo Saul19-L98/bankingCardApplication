@@ -2,41 +2,140 @@
 @{
     ViewData["Title"] = "Account";
 }
-<div class="text-center">
+<div>
     <h1 class="display-4">Account Balance</h1>
-    <div>
-        <h2>Account Details</h2>
-        <p><strong>Name:</strong> @Model.CardAccountDetails.Name</p>
-        <p><strong>Card Number:</strong> @Model.CardAccountDetails.CardNumber</p>
-        <p><strong>Credit Limit:</strong> @Model.CardAccountDetails.CreditLimit</p>
-        <p><strong>Current Balance:</strong> @Model.CardAccountDetails.CurrentBalance</p>
-        <p><strong>Available Balance:</strong> @Model.CardAccountDetails.AvailableBalance</p>
-        <p><strong>Bonifiable Interest:</strong> @Model.CardAccountDetails.BonifiableInterest</p>
-        <p><strong>Minimum Payment Due:</strong> @Model.CardAccountDetails.MinimumPaymentDue</p>
-        <p><strong>Total Cash Amount Payable:</strong> @Model.CardAccountDetails.TotalCashAmountPayable</p>
-        <p><strong>Total Cash Amount To Pay With Interest:</strong> @Model.CardAccountDetails.TotalCashAmountToPayWithInterest</p>
-    </div>
-    <div>
-        <h2>Total Amount of Purchases</h2>
-        <p><strong>Current Month</strong>@Model.TotalPurchasesCurrentAndPreviousMonth.TotalCurrentMonth</p>
-        <p><strong>Previous Month</strong>@Model.TotalPurchasesCurrentAndPreviousMonth.TotalPreviousMonth</p>
-    </div>
-    <div>
-        <h2>Purchases of the Month</h2>
-        @if (Model.Purchases.Count != 0)
-        {
-            foreach (var purchase in Model.Purchases)
-            {
-                <div>
-                    <p><strong>Date</strong>@purchase.Date.ToShortDateString()</p>
-                    <p><strong>Amount</strong>$@purchase.Amount</p>
-                    <p><strong>Description</strong>@purchase.Description</p>
+</div>
+
+<div>
+    <div class="container my-4 border border-primary">
+        <h2 class="mb-5 text-center">Account Details</h2>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Name</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">@Model.CardAccountDetails.Name</h3>
+                    </div>
                 </div>
-            }
-        }
-        else
-        {
-            <p>Currently you have make any payment this and last month.</p>
-        }
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card Number</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">@Model.CardAccountDetails.CardNumber</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card Limit</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">$@Model.CardAccountDetails.CreditLimit</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Current Balance</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">$@Model.CardAccountDetails.CurrentBalance</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Available Balance</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">$@Model.CardAccountDetails.AvailableBalance</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Bonifiable Interest</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">$@Model.CardAccountDetails.BonifiableInterest</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Minimum Payment </h5>
+                        <h3 class="card-subtitle mb-2 text-muted">$@Model.CardAccountDetails.MinimumPaymentDue</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Payable Amount</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">$@Model.CardAccountDetails.TotalCashAmountPayable</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Payable with Interest</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">$@Model.CardAccountDetails.TotalCashAmountToPayWithInterest</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container my-4 border border-primary">
+        <h2 class="mb-4 text-center">Amount of Purchases</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Current Month</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">@Model.TotalPurchasesCurrentAndPreviousMonth.TotalCurrentMonth</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Previous Month</h5>
+                        <h3 class="card-subtitle mb-2 text-muted">@Model.TotalPurchasesCurrentAndPreviousMonth.TotalPreviousMonth</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-4 border border-primary">
+        <h2 class="mb-5 text-center">Recent Purchases</h2>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var purchase in Model.Purchases)
+                    {
+                        <tr>
+                            <td>@purchase.Date.ToShortDateString()</td>
+                            <td>@purchase.Amount.ToString("C")</td>
+                            <td>@purchase.Description</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

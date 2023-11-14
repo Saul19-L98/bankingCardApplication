@@ -1,15 +1,29 @@
 ﻿@model bankingApp.WebApp.Models.ViewModels.PaymentViewModels.PaymentDTO
 
-<form id="paymentForm">
-    <!-- Hidden field for Date -->
-    <input type="hidden" id="Date" name="Date">
+<div class="container my-5">
+    <div class="card mx-auto" style="max-width: 400px;">
+        <div class="card-header text-center">
+            <h4 class="mb-0">Payment Details</h4>
+        </div>
+        <div class="card-body">
+            <form id="paymentForm">
+                
+                <input type="hidden" id="Date" name="Date">
 
-    <div class="form-group">
-        <label for="Amount">Amount</label>
-        <input type="number" class="form-control" id="Amount" name="Amount" required min="0.01" step="any">
+               
+                <div class="form-group">
+                    <label for="Amount">Amount</label>
+                    <input type="number" class="form-control" id="Amount" name="Amount" required min="0.01" step="any">
+                </div>
+
+                
+                <div class="mt-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-block">Confirm Payment</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>
 
 @section Scripts{
     <script>
@@ -21,7 +35,7 @@
                 $("#Date").val(new Date().toISOString());
 
                 if (!validateForm()) {
-                    return; // Stop the submission if validation fails
+                    return; 
                 }
 
                 var formData = {
