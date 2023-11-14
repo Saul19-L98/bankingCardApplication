@@ -1,18 +1,18 @@
 # bankingCardApplication
-This project is made of 1 solutions and 2 projects, the project BankingApp.WebApp is the MVC frontend Web Application adn the BankingApp.Restapi is where the backend and business logic is located.
+This project is made of 1 solution and 2 projects, the project BankingApp.WebApp is the MVC frontend Web Application and the BankingApp.Restapi is where the backend and business logic is located.
 
-## Create the Data Base with Migrations ⚒️
+## Create the DataBase with Migrations ⚒️
 
-In the BankingApp.Restapi there is a folder named 'Migrations' here is where the scripts that create the Data Base are located, to execute that script, you should execute this command in the Nuget Package Manger Console:
+In the BankingApp.Restapi there is a folder named 'Migrations' here is where the scripts that create the DataBase are located, to execute that script, you should execute this command in the Nuget Package Manger Console:
 ``` cli
 Update-Database
 ```
-Once executed, the Data Base will be created in your computer.
+Once executed, the DataBase will be created in your computer.
 
-## Connection to Data Base 📜
+## Connection to DataBase 📜
 
-Then connectiong to the data base you will need to add a 'ConnectionStrings' with the "Manage User Secrets" property of VS community,
-here is an exxample of the string:
+Then the connection to the database you will need to add a 'ConnectionStrings' with the "Manage User Secrets" property of VS community,
+here is an example of the string:
 ``` json
 ConnectionStrings:AccountDbConnectionString": "Server=ServerName;Database=AccountDb;Trusted_Connection=True;TrustServerCertificate=true"
 ```
@@ -21,6 +21,40 @@ Replace the 'ServerName' with the name of your server. Then in the Program.cs of
 builder.Services.AddDbContext<AccountDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AccountDbConnectionString")));
 ```
 With that the backend should be connected to the Data Base.
+
+## Projects Structure
+Both of they use similar file MVC structure, to communicate with the Data Base I used the 'Repository' design pattern, all the queries are located in the Repository folder, in models 'Domain' models are the template for the columns in my Data Base and the primary objects to work with the data, 'DTOs' are the models use to send and receive data to the frontend.
+<pre>
+├── Controllers
+│   ├── AccountStatus
+│   │   └── AccountBalanceController.cs
+│   └── Transactions
+│       └── TransactionsHistory
+│           └── TransactionsHistoryController.cs
+├── Data
+│   ├── Migrations
+│   └── AccountDbContext.cs
+├── Models
+│   ├── Domain
+│   │   ├── Account.cs
+	├── Transaction.cs
+│   │   ├── Card.cs
+│   │   └── TransactionType.cs
+│   ├── DTOs
+│   │   ├── AccountBalanceDTOs
+│   │   │   ├── CardAccountDetailsDTO.cs
+│   │   │   └── PurchaseDTO.cs
+│   │   ├── TotalPurchasesCurrentAndPreviousMonthDTO.cs
+│   │   └── TransactionsDTOs
+│   │       └── TransactionDTO.cs
+│   └── TransactionsHistoryDTOs
+│       └── TransactionsHistoryDTO.cs
+└── Repository
+    ├── AccountBalanceRepository
+    │   └── AccountBalanceRepository.cs
+    └── TransactionsRepository
+        └── TransactionsRepository.cs
+</pre>
 
 ## Storage Procedurals
 
